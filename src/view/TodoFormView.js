@@ -9,7 +9,7 @@ class TodoFormView {
 		return $(`
 			<button type="button" class="js-show-add-modal btn btn-outline-success btn-lg">Open Add Modal</button>
 		`).click(() => {
-			this.onClickButtonModal();
+			this.onClickButtonOpen();
 		});
 	}
 
@@ -28,7 +28,7 @@ class TodoFormView {
       		</form>
     		</div>
 		`).click(() => {
-			this.onClickAdd();
+			this.onClickButtonAdd();
 		});
 	}
 
@@ -43,11 +43,11 @@ class TodoFormView {
    	}
 	}
 
-	onClickButtonModal() {
+	onClickButtonOpen() {
 		this.$addModal.dialog("open");
 	}
 
-	onClickAdd() {
+	onClickButtonAdd() {
 		if(event.target.closest('button')) {
 			const newTodo = this.getTodoFormData();
       	this.config.createNewTodo(newTodo);

@@ -39,6 +39,8 @@ function copyVendorsJs() {
 function buildIndexJs() {
  return src('src/**/*.js')
  	.pipe(concat('app.js'))
+ 	.pipe(uglify())
+ 	.pipe(rename({ suffix: '.min' }))
   	.pipe(dest('docs/js'))
 }
 

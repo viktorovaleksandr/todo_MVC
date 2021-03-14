@@ -9,7 +9,7 @@ class TodosModel {
       .then((todos) => this.todos = todos);
    }
 
-   async sendPostTodoRequest(newTodo) {
+   async postNewTodo(newTodo) {
    	return fetch('https://jsonplaceholder.typicode.com/todos', {
   			method: 'POST',
   			body: JSON.stringify(newTodo),
@@ -24,8 +24,7 @@ class TodosModel {
 		});
 	}
 
-
-   async toggleCompleted(id) {
+   async toggleTodoCompleted(id) {
    	const todo = this.todos.find(todo => todo.id === id );
    	const toggleTodo = {
    		...todo,
@@ -50,7 +49,7 @@ class TodosModel {
   		})
    }
 
-   async sendDeleteTodoRequest(id) {
+   async deleteTodo(id) {
    	return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
       method: 'DELETE',
    	})

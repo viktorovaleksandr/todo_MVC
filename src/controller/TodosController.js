@@ -1,7 +1,7 @@
 class TodosController {
 	constructor() {
 		this.todoListView = new TodoListView({
-			toggleCompleted: (id) => this.toggleCompleted(id),
+			toggleTodoCompleted: (id) => this.toggleTodoCompleted(id),
 			deleteTodo: (id) => this.deleteTodo(id)
 		});
 		this.todoFormView = new TodoFormView({
@@ -24,16 +24,16 @@ class TodosController {
 	}
 
 	async createNewTodo(todo) {
-		const newTodo = await this.todosModel.sendPostTodoRequest(todo);
+		const newTodo = await this.todosModel.postNewTodo(todo);
 		this.todoListView.renderTodo(newTodo);
 	}
 
-	async toggleCompleted(id) {
-		await this.todosModel.toggleCompleted(id);
+	async toggleTodoCompleted(id) {
+		await this.todosModel.toggleTodoCompleted(id);
 		this.todoListView.renderTodos(this.todosModel.todos);
 	}
 
 	async deleteTodo(id) {
-		await this.todosModel.sendDeleteTodoRequest(id);
+		await this.todosModel.deleteTodo(id);
 	}
 }

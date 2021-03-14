@@ -8,7 +8,7 @@ class TodoListView {
 		return $(`
 			<ul class="js-list-todo list-group list-unstyled list-group-flush">
 		`).click((event) => {
-			this.onClickTodo(event);
+			this.onClickTodoItem(event);
 			this.onClickDeleteButton(event);
 		});
 	}
@@ -35,14 +35,13 @@ class TodoListView {
 	}
 
 	renderTodo(todo) {
-		// console.log(todo)
 		const newTodo = this.generateTodo(todo);	
 		$(this.$list).prepend(newTodo);
 	}
 
-	onClickTodo(event) {
+	onClickTodoItem(event) {
 		const id = $(event.target).data('id');
-		this.config.toggleCompleted(id);
+		this.config.toggleTodoCompleted(id);
 	}
 
 	onClickDeleteButton(event) {
