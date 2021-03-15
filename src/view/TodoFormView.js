@@ -7,7 +7,7 @@ class TodoFormView {
 
 	generateButtonModal() {
 		return $(`
-			<button type="button" class="js-show-add-modal btn btn-outline-success btn-lg">Open Add Modal</button>
+		<button type="button" class="js-show-add-modal btn btn-outline-success btn-lg">Open Add Modal</button>
 		`).click(() => {
 			this.onClickButtonOpen();
 		});
@@ -17,14 +17,14 @@ class TodoFormView {
 		return $(`
 			<div class="js-add-modal " title="Add Todo Modal">
       		<form name="add-todo" class="input-group">
-        			<label class="form-label">Todo Name</label>
-        				<input name="name" class="js-input-todo" placeholder="Insert your task here..." value="">
-        			<label for="js-checkbox-add"><strong>Is Done</strong>
-          			<input type="checkbox" id="js-checkbox-add">
-        			</label>
-        			<div class="mt-3">
-          			<button type="button" class="js-add-todo btn btn-outline-success btn-lg"><i class="bi bi-plus-circle"> Add</i></button>
-        			</div>
+        		<label class="form-label">Todo Name</label>
+        			<input name="name" class="js-input-todo" placeholder="Insert your task here..." value="">
+        		<label for="js-checkbox-add"><strong>Is Done</strong>
+          		<input type="checkbox" id="js-checkbox-add">
+        		</label>
+        		<div class="mt-3">
+          		<button type="button" class="js-add-todo btn btn-outline-success btn-lg"><i class="bi bi-plus-circle"> Add</i></button>
+        		</div>
       		</form>
     		</div>
 		`).click(() => {

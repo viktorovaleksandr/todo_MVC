@@ -18,13 +18,20 @@ function buildIndexCss() {
 }
 
 function copyVendorsCss() {
- return src(['node_modules/bootstrap/dist/css/bootstrap.min.css'])
+ return src([
+ 	'node_modules/bootstrap/dist/css/bootstrap.min.css',
+ 	'node_modules/@icon/bootstrap-icons/bootstrap-icons.css'
+ 	])
  .pipe(concat('vendors.css'))
  .pipe(dest('docs/css'))
 }
 
-function copyImage() {
- return src('src/**/*.png').pipe(dest('docs/'));
+function buildIndexJs() {
+ return src('src/**/*.js')
+ 	.pipe(concat('app.js'))
+ 	.pipe(uglify())
+ 	.pipe(rename({ suffix: '.min' }))
+  	.pipe(dest('docs/js'))
 }
 
 function copyVendorsJs() {
@@ -36,12 +43,17 @@ function copyVendorsJs() {
   	.pipe(dest('docs/js'))
 }
 
-function buildIndexJs() {
- return src('src/**/*.js')
- 	.pipe(concat('app.js'))
- 	.pipe(uglify())
- 	.pipe(rename({ suffix: '.min' }))
-  	.pipe(dest('docs/js'))
+function copyIcons() {
+ return src([
+ 	'node_modules/@icon/bootstrap-icons/bootstrap-icons.woff2',
+ 	'node_modules/@icon/bootstrap-icons/bootstrap-icons.ttf',
+ 	'node_modules/@icon/bootstrap-icons/bootstrap-icons.woff'
+ 	])
+ .pipe(dest('docs/css'));
+}
+
+function copyImage() {
+ return src('src/**/*.png').pipe(dest('docs/'));
 }
 
 function startSerwer(cd) {
@@ -62,6 +74,6 @@ function reloadBrowser(cd) {
 }
 
 module.exports = {
-	default: series(copyIndexHtml,buildIndexCss,copyVendorsCss,copyImage,copyVendorsJs,buildIndexJs,startSerwer),
-	build: series(copyIndexHtml,buildIndexCss,copyVendorsCss,copyImage,copyVendorsJs,buildIndexJs)
+	default: series(copyIndexHtml,buildIndexCss,copyVendorsCss,copyImage,copyIcons,copyVendorsJs,buildIndexJs,startSerwer),
+	build: series(copyIndexHtml,buildIndexCss,copyVendorsCss,copyImage,copyIcons,copyVendorsJs,buildIndexJs)
 }

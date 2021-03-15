@@ -19,7 +19,7 @@ class TodosModel {
 		})
   		.then((response) => response.json())
   		.then(newTodo => {
-			this.todos = [...this.todos,newTodo];
+			this.todos = [newTodo,...this.todos];
 			return newTodo;
 		});
 	}
@@ -27,7 +27,6 @@ class TodosModel {
    async toggleTodoCompleted(id) {
    	const todo = this.todos.find(todo => todo.id === id );
 		if (todo.id === id) todo.completed = !todo.completed;
-
 
    	return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
   			method: 'PUT',
@@ -44,7 +43,7 @@ class TodosModel {
   				}
   				return toggleTodo;
   			})
-  		})
+  		});
    }
 
    async deleteTodo(id) {

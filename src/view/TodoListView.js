@@ -6,7 +6,7 @@ class TodoListView {
 
 	generateList() {
 		return $(`
-			<ul class="js-list-todo list-group list-unstyled list-group-flush">
+		<ul class="js-list-todo list-group list-unstyled list-group-flush">
 		`).click((event) => {
 			this.onClickTodoItem(event);
 			this.onClickDeleteButton(event);
@@ -31,7 +31,7 @@ class TodoListView {
 
 	renderTodos(todos) {
 		const todoHtml = todos.map(this.generateTodo);
-		this.$list.html(todoHtml);
+		this.$list.prepend(todoHtml);
 	}
 
 	renderTodo(todo) {
