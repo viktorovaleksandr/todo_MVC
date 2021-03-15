@@ -26,14 +26,12 @@ class TodosModel {
 
    async toggleTodoCompleted(id) {
    	const todo = this.todos.find(todo => todo.id === id );
-   	const toggleTodo = {
-   		...todo,
-   		completed: !todo.completed
-   	};
+		if (todo.id === id) todo.completed = !todo.completed;
+
 
    	return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
   			method: 'PUT',
-  			body: JSON.stringify(toggleTodo),
+  			body: JSON.stringify(todo),
   			headers: {
     			'Content-type': 'application/json; charset=UTF-8',
   			},
@@ -54,10 +52,10 @@ class TodosModel {
       method: 'DELETE',
    	})
 		.then(() => {
-			const $todoElements = $('.js-list-todo');
-			const $currentTodoElement = $($todoElements).find(`li[data-id="${id}"]`);
-			$currentTodoElement.remove();
-			this.todos = this.todos.filter(todo => todo.id !== id);
+		const ulTodoElement = document.querySelector('.js-list-todo');
+		const listElementId = ulTodoElement.querySelector(`li[data-id="${id}"]`);
+		listElementId.remove();
+		this.todos = this.todos.filter(todo => todo.id !== id);
 		});
    }
 }
