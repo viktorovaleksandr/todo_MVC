@@ -46,15 +46,13 @@ class TodosModel {
   		});
    }
 
-   async deleteTodo(id) {
+   async deleteTodo(id,todoItem) {
    	return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
       method: 'DELETE',
    	})
 		.then(() => {
-		const ulTodoElement = document.querySelector('.js-list-todo');
-		const listElementId = ulTodoElement.querySelector(`li[data-id="${id}"]`);
-		listElementId.remove();
-		this.todos = this.todos.filter(todo => todo.id !== id);
+			todoItem.remove();
+			this.todos = this.todos.filter(todo => todo.id !== id);
 		});
    }
 }

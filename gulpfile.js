@@ -1,8 +1,8 @@
 const {src, dest, series, watch} = require('gulp'); 
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
-const rename = require('gulp-rename');
 const cssnano = require('gulp-cssnano');
+const rename = require('gulp-rename');
 const browserSync = require('browser-sync').create();
 
 function copyIndexHtml() {
@@ -43,16 +43,16 @@ function copyVendorsJs() {
   	.pipe(dest('docs/js'))
 }
 
-function copyIcons() {
+function copyBootstrapIcons() {
  return src([
- 	'node_modules/@icon/bootstrap-icons/bootstrap-icons.woff2',
- 	'node_modules/@icon/bootstrap-icons/bootstrap-icons.ttf',
- 	'node_modules/@icon/bootstrap-icons/bootstrap-icons.woff'
+ 	'node_modules/@icon/bootstrap-icons/*.woff2',
+ 	'node_modules/@icon/bootstrap-icons/*.ttf',
+ 	'node_modules/@icon/bootstrap-icons/*.woff'
  	])
  .pipe(dest('docs/css'));
 }
 
-function copyImage() {
+function copyJqueryIcons() {
  return src('src/**/*.png').pipe(dest('docs/'));
 }
 
@@ -74,6 +74,6 @@ function reloadBrowser(cd) {
 }
 
 module.exports = {
-	default: series(copyIndexHtml,buildIndexCss,copyVendorsCss,copyImage,copyIcons,copyVendorsJs,buildIndexJs,startSerwer),
-	build: series(copyIndexHtml,buildIndexCss,copyVendorsCss,copyImage,copyIcons,copyVendorsJs,buildIndexJs)
+	default: series(copyIndexHtml,buildIndexCss,copyVendorsCss,copyJqueryIcons,copyBootstrapIcons,copyVendorsJs,buildIndexJs,startSerwer),
+	build: series(copyIndexHtml,buildIndexCss,copyVendorsCss,copyJqueryIcons,copyBootstrapIcons,copyVendorsJs,buildIndexJs)
 }

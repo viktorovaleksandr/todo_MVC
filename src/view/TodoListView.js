@@ -6,7 +6,9 @@ class TodoListView {
 
 	generateList() {
 		return $(`
-		<ul class="js-list-todo list-group list-unstyled list-group-flush">
+		<div class="js-list-todo container col-sm-6">
+			<ul class=" list-group list-unstyled list-group-flush">
+		</div>
 		`).click((event) => {
 			this.onClickTodoItem(event);
 			this.onClickDeleteButton(event);
@@ -45,10 +47,11 @@ class TodoListView {
 	}
 
 	onClickDeleteButton(event) {
-		const listElement = (event.target).closest('li');
-		const id = parseInt(listElement.dataset.id, 10);
+		const $todoItem = $(event.target).closest('li');
+		const id = $todoItem.data('id');
+		
 		if(event.target.closest('i')) {
-      	this.config.deleteTodo(id);
+			this.config.deleteTodo(id,$todoItem);
     	}
 	}
 }

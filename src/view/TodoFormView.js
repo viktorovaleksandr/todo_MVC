@@ -7,7 +7,7 @@ class TodoFormView {
 
 	generateButtonModal() {
 		return $(`
-		<button type="button" class="js-show-add-modal btn btn-outline-success btn-lg">Open Add Modal</button>
+		<button type="button" class="js-show-add-modal btn btn-success btn-lg">Open Add Modal</button>
 		`).click(() => {
 			this.onClickButtonOpen();
 		});

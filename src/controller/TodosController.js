@@ -2,7 +2,7 @@ class TodosController {
 	constructor() {
 		this.todoListView = new TodoListView({
 			toggleTodoCompleted: (id) => this.toggleTodoCompleted(id),
-			deleteTodo: (id) => this.deleteTodo(id)
+			deleteTodo: (id,todoItem) => this.deleteTodo(id,todoItem)
 		});
 		this.todoFormView = new TodoFormView({
 			createNewTodo: (todo) => this.createNewTodo(todo)
@@ -33,7 +33,7 @@ class TodosController {
 		this.todoListView.renderTodos(this.todosModel.todos);
 	}
 
-	async deleteTodo(id) {
-		await this.todosModel.deleteTodo(id);
+	async deleteTodo(id,todoItem) {
+		await this.todosModel.deleteTodo(id,todoItem);
 	}
 }
