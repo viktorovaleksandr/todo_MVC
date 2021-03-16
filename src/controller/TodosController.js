@@ -9,10 +9,10 @@ class TodosController {
 		});
 		this.todosModel = new TodosModel();
 
-		const $app = $('#app');
+			const $app = $('#app');
 
-		$app.append(this.todoFormView.$buttonModal);
-      $app.append(this.todoListView.$list);
+			$app.append(this.todoFormView.$buttonModal);
+      			$app.append(this.todoListView.$list);
 
 		this.init();
 	}
