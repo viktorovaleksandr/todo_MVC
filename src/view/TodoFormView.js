@@ -15,16 +15,16 @@ class TodoFormView {
 
 	generateAddModal() {
 		return $(`
-			<div class="js-add-modal " title="Add Todo Modal">
+		<div class="js-add-modal " title="Add Todo Modal">
       		<form name="add-todo" class="input-group">
-        		<label class="form-label">Todo Name</label>
-        			<input name="name" class="js-input-todo" placeholder="Insert your task here..." value="">
-        		<label for="js-checkbox-add"><strong>Is Done</strong>
+        	<label class="form-label">Todo Name</label>
+        		<input name="name" class="js-input-todo" placeholder="Insert your task here..." value="">
+        	<label for="js-checkbox-add"><strong>Is Done</strong>
           		<input type="checkbox" id="js-checkbox-add">
-        		</label>
-        		<div class="mt-3">
+        	</label>
+        	<div class="mt-3">
           		<button type="button" class="js-add-todo btn btn-outline-success btn-lg"><i class="bi bi-plus-circle"> Add</i></button>
-        		</div>
+        	</div>
       		</form>
     		</div>
 		`).click(() => {
@@ -50,20 +50,20 @@ class TodoFormView {
 	onClickButtonAdd() {
 		if(event.target.closest('button')) {
 			const newTodo = this.getTodoFormData();
-      	this.config.createNewTodo(newTodo);
-      	this.cleanForm();
-      	this.$addModal.dialog("close");
-    	}
+      			this.config.createNewTodo(newTodo);
+      			this.cleanForm();
+      			this.$addModal.dialog("close");
+    		}
 	}
 
 	cleanForm() {
 		const $form = $('form[name="add-todo"]');
-	   $form[0].reset();
+	   	$form[0].reset();
 	}
 
 	initModals() {
-      const baseModalOptions = {
-      autoOpen: false,
+      	const baseModalOptions = {
+      	autoOpen: false,
 		modal: true,
 		hide: {
         	effect: "explode",
